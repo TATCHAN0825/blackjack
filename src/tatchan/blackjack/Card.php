@@ -6,6 +6,9 @@ namespace tatchan\blackjack;
 
 use RuntimeException;
 
+/**
+ * カード。とらんぷ
+ */
 class Card
 {
     public const CLUB = 0;

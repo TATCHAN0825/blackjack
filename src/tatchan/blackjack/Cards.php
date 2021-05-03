@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace tatchan\blackjack;
 
+/**
+ * カードの集合
+ * 山とかなんにでもつかえる
+ */
 class Cards
 {
     public static function make(int $jokerCount = 0): self {

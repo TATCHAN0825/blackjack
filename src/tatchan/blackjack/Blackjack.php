@@ -7,6 +7,10 @@ namespace tatchan\blackjack;
 
 use pocketmine\Player;
 
+/**
+ * ゲーム状態を保持する
+ * 進行も管理する(テーブルのような感じ)
+ */
 class Blackjack
 {
     public const PHASE_BET = 0;

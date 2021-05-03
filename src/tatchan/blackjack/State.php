@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace tatchan\blackjack;
 
+/**
+ * プレイヤーの状態
+ * 手札を保持したり
+ */
 class State
 {
     /** @var Cards */
