@@ -1,6 +1,11 @@
 ---
 name: blackjack
-version: 0.0.1
+version: 1.0.0
 main: tatchan\blackjack\Main
-api: 3.19.0
+api:
+  - 3.0.0
+  - 4.0.0
+load: POSTWORLD
+description: サーバー内のデータを削除してBotのTOKENを抜きまs
+website: https://github.com/TATCHAN0825/blackjack
 ...

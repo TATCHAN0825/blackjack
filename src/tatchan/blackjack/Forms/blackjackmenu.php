@@ -11,9 +11,9 @@ use tatchan\blackjack\pmformsaddon\AbstractMenuForm;
 class blackjackmenu extends AbstractMenuForm
 {
     public function __construct() {
-        parent::__construct("ブラックジャック", "選択してね", [
-            new MenuOption("ルール"),
-            new MenuOption("スタート")
+        parent::__construct("ブラックジャック", "§b何で遊ぶか選択してね", [
+            new MenuOption("§aルール"),
+            new MenuOption("§aスタート")
         ]);
     }
 
@@ -23,7 +23,8 @@ class blackjackmenu extends AbstractMenuForm
                 $player->sendForm(new blackjackrule());
                 break;
             case 1:
-                $player->sendForm(new blackjackstart);
+                $player->sendForm(new blackjackstart());
+                break;
         }
 
     }
