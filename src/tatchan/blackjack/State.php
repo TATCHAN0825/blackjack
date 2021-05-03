@@ -20,7 +20,8 @@ class State
     public function getCount(): int {
         $count = 0;
         foreach ($this->cards->getAll() as $card) {
-            $count += max($card->getNumber(), 10);
+            //$count += max($card->getNumber(), 10);
+            $count = $card->getcount();
         }
         return $count;
     }
