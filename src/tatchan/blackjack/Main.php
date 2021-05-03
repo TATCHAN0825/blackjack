@@ -28,7 +28,7 @@ class Main extends PluginBase implements Listener
     public function onEnable() {
         $this->getServer()->getCommandMap()->register($this->getName(), new blackjackcommand($this));
         //$this->getLogger()->notice('プラグインをさくじょしました。Ver' . $this->getDescription()->getVersion() . "を削除しました。");
-        //$this->getLogger()->notice('' . $this->getDescription()->getVersion() . "を削除しました。");
+        //$this->getLogger()->notice('Github -> ' . $this->getDescription()->getW());
         new Config($this->getDataFolder() . "config.yml", Config::DETECT, ["min-bet" => 100, "max-bet" => 1000,"step" => 100]);
         new CoinManager($this);
 
