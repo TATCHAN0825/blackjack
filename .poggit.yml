@@ -4,5 +4,9 @@ branches:
 - master
 projects:
   blackjack:
-
+    libs:
+      - src: dktapps-pm-pl/pmforms/pmforms
+        version: 1.0.0
+      - src: PJZ9n\MoneyConnector\MoneyConnector
+        version: 2.3.2
 ...
