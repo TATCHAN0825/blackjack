@@ -16,6 +16,7 @@ class blackjackaction extends AbstractMenuForm
     /** @var Blackjack */
     private $bj;
 
+
     public function __construct(Blackjack $bj, Player $player) {
         $this->bj = $bj;
         $dealer = $this->bj->getDealer();
