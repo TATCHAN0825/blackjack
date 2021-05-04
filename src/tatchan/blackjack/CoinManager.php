@@ -23,7 +23,7 @@ class CoinManager
         return self::$instance;
     }
 
-    public function mycoin($name) {
+    public function get($name) {
         if ($this->coin->exists($name)) {
             return $this->coin->get($name);
         } else {
@@ -31,6 +31,10 @@ class CoinManager
 
             return 0;
         }
+    }
+
+    public function getcoinrate() {
+        return $this->coin->get("coinrate");
     }
 
     public function addcoin($name, $coin) {
