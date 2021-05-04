@@ -65,7 +65,7 @@ class State
         return $this->getScore() > 21;
     }
 
-    public function isBrackjack(): bool {
+    public function isBlackjack(): bool {
         return $this->getScore() === 21;
     }
 }
