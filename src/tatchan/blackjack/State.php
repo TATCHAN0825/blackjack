@@ -10,24 +10,36 @@ namespace tatchan\blackjack;
  */
 class State
 {
+    public const DEALER = "dealer";
+
+    /** @var string */
+    private $playerName;
+
     /** @var Cards */
     private $cards;
 
-    public function __construct() {
+    /** @var int */
+    private $bet = 0;
+
+    public function __construct(string $playerName) {
+        $this->playerName = $playerName;
         $this->cards = new Cards();
+    }
+
+    public function getPlayerName(): string {
+        return $this->playerName;
+    }
+
+    public function setBet(int $bet): void {
+        $this->bet = $bet;
+    }
+
+    public function getBet(): int {
+        return $this->bet;
     }
 
     public function getCards(): Cards {
         return $this->cards;
-    }
-
-    public function getCount(): int {
-        $count = 0;
-        foreach ($this->cards->getAll() as $card) {
-            //$count += max($card->getNumber(), 10);
-            $count = $card->getcount();
-        }
-        return $count;
     }
 
     //自分のスコアを計算するコード
@@ -50,10 +62,10 @@ class State
     }
 
     public function isBust(): bool {
-        return $this->getCount() > 21;
+        return $this->getScore() > 21;
     }
 
     public function isBrackjack(): bool {
-        return $this->getCount() === 21;
+        return $this->getScore() === 21;
     }
 }

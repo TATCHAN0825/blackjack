@@ -36,6 +36,7 @@ class Cards
 
     public function shuffle(): void {
         shuffle($this->cards);
+        $this->cards = array_values($this->cards);
     }
 
     public function select(): Card {

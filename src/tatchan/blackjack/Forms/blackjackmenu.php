@@ -6,6 +6,7 @@ namespace tatchan\blackjack\Forms;
 
 use dktapps\pmforms\MenuOption;
 use pocketmine\Player;
+use tatchan\blackjack\Blackjack;
 use tatchan\blackjack\pmformsaddon\AbstractMenuForm;
 
 class blackjackmenu extends AbstractMenuForm
@@ -23,7 +24,9 @@ class blackjackmenu extends AbstractMenuForm
                 $player->sendForm(new blackjackrule());
                 break;
             case 1:
-                $player->sendForm(new blackjackstart());
+                $bj = new Blackjack(1);
+                $bj->addPlayer($player->getName());
+                $player->sendForm(new blackjackstart($bj));
                 break;
         }
 

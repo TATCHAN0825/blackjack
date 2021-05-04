@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace tatchan\blackjack;
 
+use pocketmine\utils\TextFormat;
 use RuntimeException;
 
 /**
@@ -48,5 +49,34 @@ class Card
                 return 1;
         }
         return null;
+    }
+
+    public function toFormattedString(): string {
+        switch ($this->getType()) {
+            case self::CLUB:
+                $type = TextFormat::WHITE . "♣";
+                break;
+            case self::DIAMOND:
+                $type = TextFormat::RED . "♦";
+                break;
+            case self::HEART:
+                $type = TextFormat::RED . "♥";
+                break;
+            case self::SPADE:
+                $type = TextFormat::WHITE . "♠";
+                break;
+        }
+        if ($this->getNumber() === 1) {
+            $number = "A";
+        } elseif ($this->getNumber() === 11) {
+            $number = "J";
+        } elseif ($this->getNumber() === 12) {
+            $number = "Q";
+        } else if ($this->getNumber() === 13) {
+            $number = "K";
+        } else {
+            $number = $this->getNumber();
+        }
+        return TextFormat::RESET . $type . $number . TextFormat::RESET;
     }
 }
