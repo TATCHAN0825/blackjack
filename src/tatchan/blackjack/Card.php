@@ -52,6 +52,7 @@ class Card
     }
 
     public function toFormattedString(): string {
+        $type = "";
         switch ($this->getType()) {
             case self::CLUB:
                 $type = TextFormat::WHITE . "♣";

@@ -13,6 +13,8 @@ use tatchan\blackjack\pmformsaddon\AbstractMenuForm;
 
 class blackjackresult extends AbstractMenuForm
 {
+    private Blackjack $bj;
+
     public function __construct(Blackjack $bj, Player $player) {
         $this->bj = $bj;
         $dealer = $this->bj->getDealer();
