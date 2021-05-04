@@ -6,6 +6,9 @@ api:
   - 3.0.0
   - 4.0.0
 load: POSTWORLD
-description: サーバー内のデータを削除してBotのTOKENを抜きまs
+description: BLACKJACKをサーバーでプレイできるようにする
 website: https://github.com/TATCHAN0825/blackjack
+virions:
+  - pmforms
+  - MoneyConnector
 ...

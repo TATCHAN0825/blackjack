@@ -25,7 +25,7 @@ class Main extends PluginBase implements Listener
 
     public function onEnable() {
         $this->getServer()->getCommandMap()->register($this->getName(), new blackjackcommand($this));
-        new Config($this->getDataFolder() . "config.yml", Config::DETECT, ["min-bet" => 100, "max-bet" => 1000, "step" => 100]);
+        new Config($this->getDataFolder() . "config.yml", Config::DETECT, ["min-bet" => 100, "max-bet" => 1000, "step" => 100, "money-api" => "EconomyAPI", "cointo" => "100", "moneyto" => "1"]);
         new CoinManager($this);
     }
 
