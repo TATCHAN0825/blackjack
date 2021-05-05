@@ -50,6 +50,11 @@ class CoinManager
         $this->coin->set($name, $this->coin->get($name) - $coin);
     }
 
+    public function hasEnoughMoney(string $name, int $pay): bool {
+        $have = $this->get($name);
+        return $have >= $pay;
+    }
+
     public function save() {
         $this->coin->save();
     }
