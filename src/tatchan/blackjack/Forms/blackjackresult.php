@@ -10,6 +10,7 @@ use pocketmine\utils\TextFormat;
 use tatchan\blackjack\Blackjack;
 use tatchan\blackjack\Card;
 use tatchan\blackjack\pmformsaddon\AbstractMenuForm;
+use tatchan\blackjack\State;
 
 class blackjackresult extends AbstractMenuForm
 {
@@ -19,14 +20,12 @@ class blackjackresult extends AbstractMenuForm
         $this->bj = $bj;
         $dealer = $this->bj->getDealer();
         $playerState = $this->bj->getPlayer($player->getName());
-        $playerScore = $playerState->isBust() ? 0 : $playerState->getScore();
-        $dealerScore = $dealer->isBust() ? 0 : $dealer->getScore();
-        if ($dealerScore > $playerScore) {
-            $winner = "ディーラーの勝ち";
-        } elseif ($playerScore > $dealerScore) {
-            $winner = "プレイヤーの勝ち";
+        if ($this->bj->getwinner() === null) {
+            $winner = "引き分け";
+        } elseif ($this->bj->getwinner()->getPlayerName() == State::DEALER) {
+            $winner = "デイーラーの勝ち";
         } else {
-            $winner = "引き分け！！";
+            $winner = "プレイヤーの勝ち";
         }
         parent::__construct(
             "ブラックジャック",

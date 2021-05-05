@@ -8,6 +8,7 @@ use dktapps\pmforms\CustomFormResponse;
 use dktapps\pmforms\element\StepSlider;
 use pocketmine\Player;
 use tatchan\blackjack\Blackjack;
+use tatchan\blackjack\CoinManager;
 use tatchan\blackjack\Main;
 use tatchan\blackjack\pmformsaddon\AbstractCustomForm;
 
@@ -32,25 +33,26 @@ class blackjackstart extends AbstractCustomForm
             $this->bets[] = "$i";
         }
 
-        parent::__construct("ブラックジャック", [new StepSlider("掛け金", "賭ける金額を選んでね", $this->bets, 0)]);
+        parent::__construct("ブラックジャック", [new StepSlider("掛けコイン", "賭けるコイン数を選んでね", $this->bets, 0)]);
     }
 
     public function onSubmit(Player $player, CustomFormResponse $response): void {
-        $bet = (int)$this->bets[$response->getInt("掛け金")];
+        $bet = (int)$this->bets[$response->getInt("掛けコイン")];
         $playerState = $this->bj->getPlayer($player->getName());
         $playerState->setBet($bet);
+        if (CoinManager::getInstance()->hasEnoughMoney($player->getName(), $playerState->getBet())) {
+            //全カード
+            $cards = $this->bj->getCards();
+            //ディーラーに2枚
+            $dealerCards = $this->bj->getDealer()->getCards();
+            $dealerCards->add($cards->select());
+            $dealerCards->add($cards->select());
+            //プレイヤーに2枚
+            $playerCards = $this->bj->getPlayer($player->getName())->getCards();
+            $playerCards->add($cards->select());
+            $playerCards->add($cards->select());
 
-        //全カード
-        $cards = $this->bj->getCards();
-        //ディーラーに2枚
-        $dealerCards = $this->bj->getDealer()->getCards();
-        $dealerCards->add($cards->select());
-        $dealerCards->add($cards->select());
-        //プレイヤーに2枚
-        $playerCards = $this->bj->getPlayer($player->getName())->getCards();
-        $playerCards->add($cards->select());
-        $playerCards->add($cards->select());
-
-        $player->sendForm(new blackjackaction($this->bj, $player));
+            $player->sendForm(new blackjackaction($this->bj, $player));
+        }
     }
 }

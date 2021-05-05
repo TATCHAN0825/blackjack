@@ -66,4 +66,18 @@ class Blackjack
     public function getPlayer(string $playerName): ?State {
         return $this->players[$playerName] ?? null;
     }
+
+    public function getwinner(): ?State {
+        $dealer = $this->getDealer();
+        $playerState = $this->getPlayers()[0];
+        $playerScore = $playerState->isBust() ? 0 : $playerState->getScore();
+        $dealerScore = $dealer->isBust() ? 0 : $dealer->getScore();
+        if ($dealerScore > $playerScore) {
+            return $dealer;
+        } elseif ($playerScore > $dealerScore) {
+            return $playerState;
+        } else {
+            return null;
+        }
+    }
 }

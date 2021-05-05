@@ -19,15 +19,17 @@ class coinbuyform extends AbstractCustomForm
     private $coin, $coinrate;
 
     public function __construct(Player $player, string $err = null) {
-        parent::__construct("入金フォーム", [new Input("入金", "入金する金額を入力してね\n§e$err")]);
+        $money = MoneyConnectorUtils::getConnectorByDetect()->myMoney($player);
+        parent::__construct("入金フォーム", [new Input("入金", "購入するコインの枚数\n現在の所持金:$money\n§e$err")]);
         $this->coin = CoinManager::getInstance()->get($player->getName());
         $this->coinrate = Main::getInstance()->getConfig()->get("coinrate");
     }
 
     public function onSubmit(Player $player, CustomFormResponse $response): void {
         if (Main::getInstance()->is_natural($response->getString("入金"))) {
-            if (MoneyConnectorUtils::getConnectorByDetect()->myMoney($player) >= $this->coinrate * $response->getString("入金")) {
-                MoneyConnectorUtils::getConnectorByDetect()->reduceMoney($player, $this->coinrate * $response->getString("入金"));
+            $paymoney = $this->coinrate * (int)$response->getString("入金");
+            if (MoneyConnectorUtils::getConnectorByDetect()->myMoney($player) >= $paymoney) {
+                MoneyConnectorUtils::getConnectorByDetect()->reduceMoney($player, $paymoney);
                 CoinManager::getInstance()->addcoin($player->getName(), 1);
             } else {
                 $player->sendMessage("§eお金が足りません");
