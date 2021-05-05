@@ -19,9 +19,11 @@ class blackjackresult extends AbstractMenuForm
         $this->bj = $bj;
         $dealer = $this->bj->getDealer();
         $playerState = $this->bj->getPlayer($player->getName());
-        if ($dealer->isBust() || $dealer->getScore() > $playerState->getScore()) {
+        $playerScore = $playerState->isBust() ? 0 : $playerState->getScore();
+        $dealerScore = $dealer->isBust() ? 0 : $dealer->getScore();
+        if ($dealerScore > $playerScore) {
             $winner = "ディーラーの勝ち";
-        } elseif ($playerState->isBust() || $playerState->getScore() > $dealer->getScore()) {
+        } elseif ($playerScore > $dealerScore) {
             $winner = "プレイヤーの勝ち";
         } else {
             $winner = "引き分け！！";

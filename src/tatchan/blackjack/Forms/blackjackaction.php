@@ -49,6 +49,10 @@ class blackjackaction extends AbstractMenuForm
                 }
             //no break
             case 1:
+                $dealer = $this->bj->getDealer();
+                while ($dealer->getScore() < 17) {
+                    $dealer->getCards()->add($this->bj->getCards()->select());
+                }
                 $player->sendForm(new blackjackresult($this->bj, $player));
                 break;
         }
