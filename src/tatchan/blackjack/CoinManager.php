@@ -33,10 +33,6 @@ class CoinManager
         }
     }
 
-    public function getcoinrate() {
-        return $this->coin->get("coinrate");
-    }
-
     public function addcoin($name, $coin) {
         $this->coin->set($name, $this->coin->get($name) + $coin);
 
