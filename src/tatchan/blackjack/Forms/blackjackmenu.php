@@ -7,6 +7,7 @@ namespace tatchan\blackjack\Forms;
 use dktapps\pmforms\MenuOption;
 use pocketmine\Player;
 use tatchan\blackjack\Blackjack;
+use tatchan\blackjack\lang\Lang;
 use tatchan\blackjack\pmformsaddon\AbstractMenuForm;
 
 class blackjackmenu extends AbstractMenuForm

@@ -9,6 +9,7 @@ use pocketmine\command\PluginCommand;
 use pocketmine\Player;
 use pocketmine\plugin\Plugin;
 use tatchan\blackjack\Forms\blackjackmenu;
+use tatchan\blackjack\lang\Lang;
 
 class blackjackcommand extends PluginCommand implements CommandExecutor
 {

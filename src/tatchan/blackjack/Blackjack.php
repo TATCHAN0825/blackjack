@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace tatchan\blackjack;
 
 use RuntimeException;
+use tatchan\blackjack\lang\Lang;
 
 /**
  * ゲーム状態を保持する
@@ -17,9 +18,6 @@ class Blackjack
 
     /** @var int */
     private $maxPlayers;
-
-    /** @var int */
-    private $phase = self::PHASE_BET;
 
     /** @var Cards */
     private $cards;
@@ -51,7 +49,7 @@ class Blackjack
 
     public function addPlayer(string $playerName): void {
         if ($this->isFull()) {
-            throw new RuntimeException("満員...");
+            throw new RuntimeException(Lang::t("full"));
         }
         $this->players[$playerName] = new State($playerName);
     }

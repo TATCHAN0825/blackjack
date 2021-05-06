@@ -6,12 +6,13 @@ namespace tatchan\blackjack\Forms;
 
 use dktapps\pmforms\MenuOption;
 use pocketmine\Player;
+use tatchan\blackjack\lang\Lang;
 use tatchan\blackjack\pmformsaddon\AbstractMenuForm;
 
 class ConverterToMoney extends AbstractMenuForm
 {
     public function __construct() {
-        parent::__construct("返金所", "§e何をするか", [new MenuOption("入金"), new MenuOption("売却")]);
+        parent::__construct(Lang::t("cointrader"), "§e" . Lang::t("what.you.do"), [new MenuOption(Lang::t("coin.buy")), new MenuOption(Lang::t("coin.sell"))]);
 
     }
 

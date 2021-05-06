@@ -9,6 +9,7 @@ use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 use tatchan\blackjack\Blackjack;
 use tatchan\blackjack\Card;
+use tatchan\blackjack\lang\Lang;
 use tatchan\blackjack\pmformsaddon\AbstractMenuForm;
 use tatchan\blackjack\State;
 
@@ -21,17 +22,17 @@ class blackjackresult extends AbstractMenuForm
         $dealer = $this->bj->getDealer();
         $playerState = $this->bj->getPlayer($player->getName());
         if ($this->bj->getwinner() === null) {
-            $winner = "引き分け";
+            $winner = Lang::t("blackjack.result.draw");
         } elseif ($this->bj->getwinner()->getPlayerName() == State::DEALER) {
-            $winner = "デイーラーの勝ち";
+            $winner = Lang::t("blackjack.result.winner.dealer");
         } else {
-            $winner = "プレイヤーの勝ち";
+            $winner = Lang::t("blackjack.result.winner.player");
         }
         parent::__construct(
-            "ブラックジャック",
-            "21に近づけよう(22以上になったら負けだよ)" . TextFormat::EOL . TextFormat::EOL
-            . "掛け金: {$playerState->getBet()}" . TextFormat::EOL
-            . TextFormat::WHITE . "ディーラー ({$dealer->getScore()}): " . implode(" ", array_map(function (Card $card): string {
+            Lang::t("blackjack"),
+            Lang::t("blackjack.action.rule") . TextFormat::EOL . TextFormat::EOL
+            . Lang::t("blackjack.bet", [$playerState->getBet()]) . TextFormat::EOL
+            . TextFormat::WHITE . Lang::t("dealer") . "({$dealer->getScore()}): " . implode(" ", array_map(function (Card $card): string {
                 return $card->toFormattedString();
             }, $dealer->getCards()->getAll())) . ($dealer->isBust() ? TextFormat::RED . " (バースト)" : ($dealer->isBlackjack() ? TextFormat::AQUA . " (ブラックジャック)" : "")) . TextFormat::EOL
             . TextFormat::WHITE . "プレイヤー ({$playerState->getScore()}): " . implode(" ", array_map(function (Card $card): string {
