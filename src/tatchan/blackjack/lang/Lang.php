@@ -23,7 +23,7 @@ class Lang
 
     /**
      * 翻訳する
-     * @param $text TextContainer|string
+     * @param TextContainer|string $text
      */
     public static function t($text, array $params = []): string {
         if ($text instanceof TextContainer) {
