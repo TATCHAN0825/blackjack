@@ -69,7 +69,8 @@ class Blackjack
 
     public function getwinner(): ?State {
         $dealer = $this->getDealer();
-        $playerState = $this->getPlayers()[0];
+        $playerState = $this->getPlayers()[array_key_first($this->getPlayers())];
+        //TODO::複数人プレイも対応するように
         $playerScore = $playerState->isBust() ? 0 : $playerState->getScore();
         $dealerScore = $dealer->isBust() ? 0 : $dealer->getScore();
         if ($dealerScore > $playerScore) {
