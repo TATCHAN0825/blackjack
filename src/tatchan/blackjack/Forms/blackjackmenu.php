@@ -13,10 +13,10 @@ use tatchan\blackjack\pmformsaddon\AbstractMenuForm;
 class blackjackmenu extends AbstractMenuForm
 {
     public function __construct() {
-        parent::__construct("ブラックジャック", "§b何で遊ぶか選択してね", [
-            new MenuOption("§aルール"),
-            new MenuOption("§a返金所"),
-            new MenuOption("§aスタート")
+        parent::__construct(Lang::t("blackjack"), Lang::t("§b%whatplay.select"), [
+            new MenuOption(Lang::t("§a%rule")),
+            new MenuOption(Lang::t("§a%cointrader")),
+            new MenuOption(Lang::t("§a%start"))
         ]);
     }
 

@@ -34,12 +34,12 @@ class blackjackresult extends AbstractMenuForm
             . Lang::t("blackjack.bet", [$playerState->getBet()]) . TextFormat::EOL
             . TextFormat::WHITE . Lang::t("dealer") . "({$dealer->getScore()}): " . implode(" ", array_map(function (Card $card): string {
                 return $card->toFormattedString();
-            }, $dealer->getCards()->getAll())) . ($dealer->isBust() ? TextFormat::RED . " (バースト)" : ($dealer->isBlackjack() ? TextFormat::AQUA . " (ブラックジャック)" : "")) . TextFormat::EOL
-            . TextFormat::WHITE . "プレイヤー ({$playerState->getScore()}): " . implode(" ", array_map(function (Card $card): string {
+            }, $dealer->getCards()->getAll())) . ($dealer->isBust() ? TextFormat::RED . " (" . Lang::t("bust") . ")" : ($dealer->isBlackjack() ? TextFormat::AQUA . " (" . Lang::t("blackjack") . ")" : "")) . TextFormat::EOL
+            . TextFormat::WHITE . Lang::t("player") . " ({$playerState->getScore()}): " . implode(" ", array_map(function (Card $card): string {
                 return $card->toFormattedString();
-            }, $playerState->getCards()->getAll())) . ($playerState->isBust() ? TextFormat::RED . " (バースト)" : ($playerState->isBlackjack() ? TextFormat::AQUA . " (ブラックジャック)" : "")) . TextFormat::EOL
-            . TextFormat::EOL . "結果: {$winner}",
-            [new MenuOption("メニューへ")]
+            }, $playerState->getCards()->getAll())) . ($playerState->isBust() ? TextFormat::RED . " (" . Lang::t("bust") . ")" : ($playerState->isBlackjack() ? TextFormat::AQUA . " (" . Lang::t("blackjack") . ")" : "")) . TextFormat::EOL
+            . TextFormat::EOL . Lang::t("blackjack.result.winner", [$winner]),
+            [new MenuOption("gui.back")]
         );
     }
 

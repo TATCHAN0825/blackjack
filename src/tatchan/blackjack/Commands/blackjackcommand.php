@@ -15,8 +15,8 @@ class blackjackcommand extends PluginCommand implements CommandExecutor
 {
     public function __construct(Plugin $owner) {
         parent::__construct("bj", $owner);
-        $this->setUsage("こんな使い方もわからないの？♡♡playerのざぁこ♡♡かぁす♡♡無能♡♡ざぁこ♡♡ざぁこ♡♡");
-        $this->setDescription("ブラックジャックのメニューをだします");
+        $this->setUsage(Lang::t("command.blackjack.bj.usage"));
+        $this->setDescription(Lang::t("command.blackjack.bj.description"));
         $this->setExecutor($this);
     }
 
@@ -25,7 +25,7 @@ class blackjackcommand extends PluginCommand implements CommandExecutor
             $sender->sendForm(new blackjackmenu());
             return true;
         } else {
-            $sender->sendMessage("プレイヤーで実行しろざこ");
+            $sender->sendMessage(Lang::t("command.onlyplayer"));
             return true;
         }
     }
