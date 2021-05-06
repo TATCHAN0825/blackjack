@@ -31,7 +31,7 @@ class coinbuyform extends AbstractCustomForm
             $paymoney = $this->coinrate * (int)$response->getString(Lang::t("coin.buy"));
             if (MoneyConnectorUtils::getConnectorByDetect()->myMoney($player) >= $paymoney) {
                 MoneyConnectorUtils::getConnectorByDetect()->reduceMoney($player, $paymoney);
-                CoinManager::getInstance()->addcoin($player->getName(), 1);
+                CoinManager::getInstance()->addcoin($player->getName(), (int)$response->getString(Lang::t("coin.buy")));
             } else {
                 $player->sendMessage("§e" . Lang::t("not.enough.money"));
             }
