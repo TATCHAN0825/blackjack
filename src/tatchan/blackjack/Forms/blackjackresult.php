@@ -21,9 +21,9 @@ class blackjackresult extends AbstractMenuForm
         $this->bj = $bj;
         $dealer = $this->bj->getDealer();
         $playerState = $this->bj->getPlayer($player->getName());
-        if ($this->bj->getwinner() === null) {
+        if ($this->bj->getwinner($player->getName()) === null) {
             $winner = Lang::t("blackjack.result.draw");
-        } elseif ($this->bj->getwinner()->getPlayerName() == State::DEALER) {
+        } elseif ($this->bj->getwinner($player->getName())->getPlayerName() == State::DEALER) {
             $winner = Lang::t("blackjack.result.winner.dealer");
         } else {
             $winner = Lang::t("blackjack.result.winner.player");
