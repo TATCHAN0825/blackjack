@@ -24,30 +24,30 @@ class coinsellform extends AbstractCustomForm
             "messages", implode(TextFormat::EOL, $messages)
         )] : [], [
             new Label("info", implode(TextFormat::EOL, [
-                Lang::t("所持コイン", [$coin]),
-                Lang::t("所持金", [$money]),
+                Lang::t("coin.mycoin", [$coin]),
+                Lang::t("economy.mymoney", [$money]),
             ])),
-            new Input("amount", Lang::t("売却するコインの量")),
+            new Input("amount", Lang::t("Amount.coins.sell")),
         ]));
     }
 
     public function onSubmit(Player $player, CustomFormResponse $response): void {
         $amount = $response->getString("amount");
         if (!is_numeric($amount)) {
-            $player->sendForm(new coinsellform($player, [Lang::t(TextFormat::RED . "%数字しか使えないよ")]));
+            $player->sendForm(new coinsellform($player, [Lang::t(TextFormat::RED . "enter.natural.number")]));
             return;
         }
         $amount = (int)$amount;
         if ($amount <= 0) {
-            $player->sendForm(new coinsellform($player, [Lang::t(TextFormat::RED . "%1以上にしてね")]));
+            $player->sendForm(new coinsellform($player, [Lang::t(TextFormat::RED . "make.it.1")]));
             return;
         }
         if (!CoinManager::getInstance()->hasEnoughMoney($player->getName(), $amount)) {
-            $player->sendForm(new coinsellform($player, [Lang::t(TextFormat::RED . "%コインが足りないよ")]));
+            $player->sendForm(new coinsellform($player, [Lang::t(TextFormat::RED . "not.enough.coin")]));
             return;
         }
         $rate = (int)Main::getInstance()->getConfig()->get("coinrate");
         MoneyConnectorUtils::getConnectorByDetect()->addMoney($player, $rate * $amount);
-        $player->sendMessage(Lang::t("売却したよ！"));
+        $player->sendMessage(Lang::t("coin.sell.it"));
     }
 }
