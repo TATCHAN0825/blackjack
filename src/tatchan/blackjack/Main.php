@@ -32,9 +32,9 @@ class Main extends PluginBase implements Listener
     }
 
     public function onEnable() {
-        new Config($this->getDataFolder() . "config.yml", Config::DETECT, ["min-bet" => 100, "max-bet" => 1000, "step" => 100, "coinrate" => 100, "coinwinrate" => 1.25, "lang" => "default"]);
+        new Config($this->getDataFolder() . "config.yml", Config::DETECT, ["min-bet" => 100, "max-bet" => 1000, "step" => 100, "coinrate" => 100, "coinwinrate" => 1.25, "lang" => "def"]);
         $lang = $this->getConfig()->get("lang");
-        if ($lang === "default") $lang = $this->getServer()->getLanguage()->getLang();
+        if ($lang === "def") $lang = $this->getServer()->getLanguage()->getLang();
         Lang::init(new BaseLang($lang, $this->getFile() . "resources/", $this->getServer()->getLanguage()->getLang()));
         $this->getServer()->getCommandMap()->register($this->getName(), new blackjackcommand($this));
         $this->getLogger()->notice(Lang::t("language.selected", [Lang::get()->getName(), Lang::get()->getLang()]));
