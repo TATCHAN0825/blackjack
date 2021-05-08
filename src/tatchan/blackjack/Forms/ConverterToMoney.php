@@ -21,6 +21,8 @@ class ConverterToMoney extends AbstractMenuForm
             case 0:
                 $player->sendForm(new coinbuyform($player));
                 break;
+            case 1:
+                $player->sendForm(new coinsellform($player));
         }
     }
 }
