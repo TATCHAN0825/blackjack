@@ -7,15 +7,18 @@ namespace tatchan\blackjack\Forms;
 use dktapps\pmforms\MenuOption;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
-use tatchan\blackjack\Blackjack;
+use tatchan\blackjack\Blackjack as Blackjack;
 use tatchan\blackjack\Card;
+use tatchan\blackjack\CoinManager;
 use tatchan\blackjack\lang\Lang;
 use tatchan\blackjack\pmformsaddon\AbstractMenuForm;
 use tatchan\blackjack\State;
 
 class blackjackresult extends AbstractMenuForm
 {
-    private Blackjack $bj;
+
+    /** @var Blackjack */
+    private $bj;
 
     public function __construct(Blackjack $bj, Player $player) {
         $this->bj = $bj;

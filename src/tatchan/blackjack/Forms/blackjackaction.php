@@ -26,7 +26,7 @@ class blackjackaction extends AbstractMenuForm
             Lang::t("blackjack"),
             Lang::t("blackjack.rule") . TextFormat::EOL . TextFormat::EOL
             . Lang::t("blackjack.bet", [$playerState->getBet()]) . TextFormat::EOL
-            . TextFormat::WHITE . Lang::t("dealer") . "(?): " . implode(" ", [$dealer->getCards()->getAll()[0]->toFormattedString(), ...array_fill(0, count($dealer->getCards()->getAll()) - 1, TextFormat::GRAY . "?")]) . TextFormat::EOL
+            . TextFormat::WHITE . Lang::t("dealer") . "(?): " . implode(" ", array_merge([$dealer->getCards()->getAll()[0]->toFormattedString()], array_fill(0, count($dealer->getCards()->getAll()) - 1, TextFormat::GRAY . "?"))) . TextFormat::EOL
             . TextFormat::WHITE . Lang::t("player") . "({$playerState->getScore()}): " . implode(" ", array_map(function (Card $card): string {
                 return $card->toFormattedString();
             }, $playerState->getCards()->getAll())),
