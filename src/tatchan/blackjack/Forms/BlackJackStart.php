@@ -42,7 +42,7 @@ class BlackJackStart extends AbstractCustomForm
         $playerState = $this->bj->getPlayer($player->getName());
         $playerState->setBet($bet);
         if (CoinManager::getInstance()->hasEnoughMoney($player->getName(), $playerState->getBet())) {
-            CoinManager::getInstance()->removecoin($player->getName(), $playerState->getBet());
+            CoinManager::getInstance()->removeCoin($player->getName(), $playerState->getBet());
             $cards = $this->bj->getCards();
             $dealerCards = $this->bj->getDealer()->getCards();
             $dealerCards->add($cards->select());

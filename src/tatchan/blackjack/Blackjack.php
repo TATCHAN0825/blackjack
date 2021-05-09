@@ -65,7 +65,7 @@ class Blackjack
         return $this->players[$playerName] ?? null;
     }
 
-    public function getwinner(string $player): ?State {
+    public function getWinner(string $player): ?State {
         $dealer = $this->getDealer();
         $playerState = $this->getPlayer($player);
         $playerScore = $playerState->isBust() ? 0 : $playerState->getScore();

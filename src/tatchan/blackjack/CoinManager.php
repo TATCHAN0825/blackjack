@@ -33,16 +33,16 @@ class CoinManager
         }
     }
 
-    public function addcoin($name, $coin) {
+    public function addCoin($name, $coin) {
         $this->coin->set($name, $this->coin->get($name) + $coin);
 
     }
 
-    public function setcoin($name, $coin) {
+    public function setCoin($name, $coin) {
         $this->coin->set($name, $coin);
     }
 
-    public function removecoin($name, $coin) {
+    public function removeCoin($name, $coin) {
         $this->coin->set($name, $this->coin->get($name) - $coin);
     }
 
