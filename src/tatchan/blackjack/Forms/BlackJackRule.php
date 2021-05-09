@@ -8,7 +8,7 @@ use pocketmine\Player;
 use tatchan\blackjack\lang\Lang;
 use tatchan\blackjack\pmformsaddon\AbstractMenuForm;
 
-class blackjackrule extends AbstractMenuForm
+class BlackJackRule extends AbstractMenuForm
 {
 
     public function __construct() {
@@ -17,7 +17,7 @@ class blackjackrule extends AbstractMenuForm
 
     public function onSubmit(Player $player, int $selectedOption): void {
         if ($selectedOption == 0) {
-            $player->sendForm(new blackjackmenu());
+            $player->sendForm(new BlackJackMenu());
         }
 
     }

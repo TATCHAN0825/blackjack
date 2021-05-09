@@ -15,7 +15,7 @@ use tatchan\blackjack\lang\Lang;
 use tatchan\blackjack\Main;
 use tatchan\blackjack\pmformsaddon\AbstractCustomForm;
 
-class coinsellform extends AbstractCustomForm
+class CoinSellForm extends AbstractCustomForm
 {
     public function __construct(Player $player, array $messages = []) {
         $coin = CoinManager::getInstance()->get($player->getName());
@@ -34,16 +34,16 @@ class coinsellform extends AbstractCustomForm
     public function onSubmit(Player $player, CustomFormResponse $response): void {
         $amount = $response->getString("amount");
         if (!is_numeric($amount)) {
-            $player->sendForm(new coinsellform($player, [Lang::t(TextFormat::RED . "enter.natural.number")]));
+            $player->sendForm(new CoinSellForm($player, [Lang::t(TextFormat::RED . "enter.natural.number")]));
             return;
         }
         $amount = (int)$amount;
         if ($amount <= 0) {
-            $player->sendForm(new coinsellform($player, [Lang::t(TextFormat::RED . "make.it.1")]));
+            $player->sendForm(new CoinSellForm($player, [Lang::t(TextFormat::RED . "make.it.1")]));
             return;
         }
         if (!CoinManager::getInstance()->hasEnoughMoney($player->getName(), $amount)) {
-            $player->sendForm(new coinsellform($player, [Lang::t(TextFormat::RED . "not.enough.coin")]));
+            $player->sendForm(new CoinSellForm($player, [Lang::t(TextFormat::RED . "not.enough.coin")]));
             return;
         }
         $rate = (int)Main::getInstance()->getConfig()->get("coinrate");

@@ -19,10 +19,10 @@ class ConverterToMoney extends AbstractMenuForm
     public function onSubmit(Player $player, int $selectedOption): void {
         switch ($selectedOption) {
             case 0:
-                $player->sendForm(new coinbuyform($player));
+                $player->sendForm(new CoinBuyForm($player));
                 break;
             case 1:
-                $player->sendForm(new coinsellform($player));
+                $player->sendForm(new CoinSellForm($player));
                 break;
         }
     }

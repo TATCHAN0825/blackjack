@@ -14,7 +14,7 @@ use tatchan\blackjack\lang\Lang;
 use tatchan\blackjack\pmformsaddon\AbstractMenuForm;
 use tatchan\blackjack\State;
 
-class blackjackresult extends AbstractMenuForm
+class BlackJackResult extends AbstractMenuForm
 {
 
     /** @var Blackjack */
@@ -49,7 +49,7 @@ class blackjackresult extends AbstractMenuForm
     public function onSubmit(Player $player, int $selectedOption): void {
         switch ($selectedOption) {
             case 0:
-                $player->sendForm(new blackjackmenu());
+                $player->sendForm(new BlackJackMenu());
                 break;
         }
     }

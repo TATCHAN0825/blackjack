@@ -10,7 +10,7 @@ use tatchan\blackjack\Blackjack;
 use tatchan\blackjack\lang\Lang;
 use tatchan\blackjack\pmformsaddon\AbstractMenuForm;
 
-class blackjackmenu extends AbstractMenuForm
+class BlackJackMenu extends AbstractMenuForm
 {
     public function __construct() {
         parent::__construct(Lang::t("blackjack"), Lang::t("§b%whatplay.select"), [
@@ -23,7 +23,7 @@ class blackjackmenu extends AbstractMenuForm
     public function onSubmit(Player $player, int $selectedOption): void {
         switch ($selectedOption) {
             case 0:
-                $player->sendForm(new blackjackrule());
+                $player->sendForm(new BlackJackRule());
                 break;
             case 1:
                 $player->sendForm(new ConverterToMoney());
@@ -31,7 +31,7 @@ class blackjackmenu extends AbstractMenuForm
             case 2:
                 $bj = new Blackjack(1);
                 $bj->addPlayer($player->getName());
-                $player->sendForm(new blackjackstart($bj));
+                $player->sendForm(new BlackJackStart($bj));
                 break;
         }
 

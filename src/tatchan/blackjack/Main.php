@@ -10,7 +10,7 @@ use pocketmine\lang\BaseLang;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use RuntimeException;
-use tatchan\blackjack\Commands\blackjackcommand;
+use tatchan\blackjack\Commands\BlackJackCommand;
 use tatchan\blackjack\lang\Lang;
 
 class Main extends PluginBase implements Listener
@@ -36,7 +36,7 @@ class Main extends PluginBase implements Listener
         $lang = $this->getConfig()->get("lang");
         if ($lang === "def") $lang = $this->getServer()->getLanguage()->getLang();
         Lang::init(new BaseLang($lang, $this->getFile() . "resources/", $this->getServer()->getLanguage()->getLang()));
-        $this->getServer()->getCommandMap()->register($this->getName(), new blackjackcommand($this));
+        $this->getServer()->getCommandMap()->register($this->getName(), new BlackJackCommand($this));
         $this->getLogger()->notice(Lang::t("language.selected", [Lang::get()->getName(), Lang::get()->getLang()]));
         new CoinManager($this);
         if (!MoneyConnectorUtils::isExistsSupportedAPI()) {

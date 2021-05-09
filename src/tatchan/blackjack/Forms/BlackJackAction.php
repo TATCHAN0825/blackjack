@@ -12,7 +12,7 @@ use tatchan\blackjack\Card;
 use tatchan\blackjack\lang\Lang;
 use tatchan\blackjack\pmformsaddon\AbstractMenuForm;
 
-class blackjackaction extends AbstractMenuForm
+class BlackJackAction extends AbstractMenuForm
 {
     /** @var Blackjack */
     private $bj;
@@ -54,7 +54,7 @@ class blackjackaction extends AbstractMenuForm
                 while ($dealer->getScore() < 17) {
                     $dealer->getCards()->add($this->bj->getCards()->select());
                 }
-                $player->sendForm(new blackjackresult($this->bj, $player));
+                $player->sendForm(new BlackJackResult($this->bj, $player));
                 break;
         }
     }
