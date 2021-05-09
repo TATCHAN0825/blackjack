@@ -13,7 +13,7 @@ use tatchan\blackjack\lang\Lang;
 use tatchan\blackjack\Main;
 use tatchan\blackjack\pmformsaddon\AbstractCustomForm;
 
-class blackjackstart extends AbstractCustomForm
+class BlackJackStart extends AbstractCustomForm
 {
     /** @var Blackjack */
     private $bj;
@@ -42,7 +42,7 @@ class blackjackstart extends AbstractCustomForm
         $playerState = $this->bj->getPlayer($player->getName());
         $playerState->setBet($bet);
         if (CoinManager::getInstance()->hasEnoughMoney($player->getName(), $playerState->getBet())) {
-            CoinManager::getInstance()->removecoin($player->getName(), $playerState->getBet());
+            CoinManager::getInstance()->removeCoin($player->getName(), $playerState->getBet());
             $cards = $this->bj->getCards();
             $dealerCards = $this->bj->getDealer()->getCards();
             $dealerCards->add($cards->select());
@@ -50,7 +50,7 @@ class blackjackstart extends AbstractCustomForm
             $playerCards = $this->bj->getPlayer($player->getName())->getCards();
             $playerCards->add($cards->select());
             $playerCards->add($cards->select());
-            $player->sendForm(new blackjackaction($this->bj, $player));
+            $player->sendForm(new BlackJackAction($this->bj, $player));
         } else {
             $player->sendMessage(Lang::t("not.enough.coin"));
         }

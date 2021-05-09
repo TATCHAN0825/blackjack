@@ -14,7 +14,7 @@ use tatchan\blackjack\lang\Lang;
 use tatchan\blackjack\pmformsaddon\AbstractMenuForm;
 use tatchan\blackjack\State;
 
-class blackjackresult extends AbstractMenuForm
+class BlackJackResult extends AbstractMenuForm
 {
 
     /** @var Blackjack */
@@ -24,9 +24,9 @@ class blackjackresult extends AbstractMenuForm
         $this->bj = $bj;
         $dealer = $this->bj->getDealer();
         $playerState = $this->bj->getPlayer($player->getName());
-        if ($this->bj->getwinner($player->getName()) === null) {
+        if ($this->bj->getWinner($player->getName()) === null) {
             $winner = Lang::t("blackjack.result.draw");
-        } elseif ($this->bj->getwinner($player->getName())->getPlayerName() == State::DEALER) {
+        } elseif ($this->bj->getWinner($player->getName())->getPlayerName() == State::DEALER) {
             $winner = Lang::t("blackjack.result.winner.dealer");
         } else {
             $winner = Lang::t("blackjack.result.winner.player");
@@ -49,7 +49,7 @@ class blackjackresult extends AbstractMenuForm
     public function onSubmit(Player $player, int $selectedOption): void {
         switch ($selectedOption) {
             case 0:
-                $player->sendForm(new blackjackmenu());
+                $player->sendForm(new BlackJackMenu());
                 break;
         }
     }

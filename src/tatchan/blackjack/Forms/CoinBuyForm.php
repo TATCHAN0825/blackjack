@@ -14,7 +14,7 @@ use tatchan\blackjack\lang\Lang;
 use tatchan\blackjack\Main;
 use tatchan\blackjack\pmformsaddon\AbstractCustomForm;
 
-class coinbuyform extends AbstractCustomForm
+class CoinBuyForm extends AbstractCustomForm
 {
     /** @var int */
     private $coin, $coinrate;
@@ -39,15 +39,15 @@ class coinbuyform extends AbstractCustomForm
         $amount = $response->getString("coinbuy");
         $paymoney = $this->coinrate * (int)$response->getString("coinbuy");
         if (!is_numeric($amount)) {
-            $player->sendForm(new coinbuyform($player, [Lang::t("enter.natural.number")]));
+            $player->sendForm(new CoinBuyForm($player, [Lang::t("enter.natural.number")]));
             return;
         }
         $amount = (int)$amount;
         if ($amount <= 0) {
-            $player->sendForm(new coinbuyform($player, [Lang::t("make.it.1")]));
+            $player->sendForm(new CoinBuyForm($player, [Lang::t("make.it.1")]));
         }
         if (!MoneyConnectorUtils::getConnectorByDetect()->myMoney($player) >= $paymoney) {
-            $player->sendForm(new coinbuyform($player, [Lang::t("not.enough.money")]));
+            $player->sendForm(new CoinBuyForm($player, [Lang::t("not.enough.money")]));
             return;
         }
         MoneyConnectorUtils::getConnectorByDetect()->reduceMoney($player, $paymoney);
